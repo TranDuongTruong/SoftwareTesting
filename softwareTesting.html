@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scholarship Calculator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333333;
+        }
+
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+        }
+
+        .button-container {
+            text-align: center;
+        }
+
+        .button-container button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            border: none;
+            color: #ffffff;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .button-container button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script>
+        function calculateScholarship() {
+            var gradeTY = parseFloat(document.getElementById('gradeThisYear').value);
+            var gradePY = parseFloat(document.getElementById('gradePreviousYear').value);
+
+            if (isNaN(gradeTY) || isNaN(gradePY)) {
+                alert('Invalid input. Please enter numeric values.');
+                return;
+            }
+
+            if (gradeTY > 10 || gradeTY < 0) {
+                alert('Enter average grade of this year again');
+                return;
+            }
+
+            if (gradePY > 10 || gradePY < 0) {
+                alert('Enter average grade of previous year again');
+                return;
+            }
+
+            var scholarship = (gradeTY >= 9) ? 5000000 : ((gradeTY >= 8) ? ((gradePY >= 8) ? 3500000 : 1000000) : 0);
+
+            var message = 'Your Scholarship is ' + scholarship;
+            alert(message);
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Scholarship Calculator</h1>
+
+        <div class="form-group">
+            <label for="gradeThisYear">Grade This Year:</label>
+            <input type="text" id="gradeThisYear" name="gradeThisYear" />
+        </div>
+
+        <div class="form-group">
+            <label for="gradePreviousYear">Grade Previous Year:</label>
+            <input type="text" id="gradePreviousYear" name="gradePreviousYear" />
+        </div>
+
+        <div class="button-container">
+            <button type="button" onclick="calculateScholarship()">Calculate</button>
+        </div>
+    </div>
+</body>
+</html>
